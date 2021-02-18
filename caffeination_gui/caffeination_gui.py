@@ -26,6 +26,7 @@ def gui():
     pyautogui.FAILSAFE = False
     sg.theme('DarkBrown1')
     layout = [
+        [sg.Text('                                                                                 ')],
         [sg.Text('Caffeination prevents your\ncomputer from going to sleep', justification='center')],
         [sg.Button('Start', key="-start-"), sg.Button('Stop', disabled=True)],
         [sg.Button('Quit')],
