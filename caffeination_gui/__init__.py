@@ -1,1 +1,1 @@
-from caffeination import *
+from caffeination_gui import *

@@ -15,7 +15,8 @@ setuptools.setup(
   url = 'https://github.com/neisor/caffeination_gui/',
   keywords = ['caffeination', 'caffe', 'caffeine', 'sleep preventer'],
   install_requires=[
-          'pyautogui'
+          'pyautogui',
+          'pysimplegui'
       ],
   packages=setuptools.find_packages(),
   classifiers=[
