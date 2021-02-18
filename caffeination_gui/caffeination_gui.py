@@ -48,8 +48,7 @@ def gui():
             window.FindElement('Stop').Update(disabled=True)
             sg.SystemTray.notify('Caffeination','Caffeination was stopped')
         if event == 'About':
-            sg.Popup('''                                      \n
-Caffeination was created by\n
+            sg.Popup('''Caffeination was created by\n
 Antonio Raffaele Iannaccone\n
 https://github.com/neisor\n\n
 Creator of the icon is:\n
