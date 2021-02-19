@@ -4,6 +4,7 @@ import sys
 import PySimpleGUI as sg
 import _thread
 import os
+import platform
 
 def run_caffeination():
     global stop
@@ -24,6 +25,10 @@ def run_caffeination():
 def gui():
     global stop
     pyautogui.FAILSAFE = False
+    if platform.system() == "Linux" or platform.system() == "Darwin":
+        icon_path = "coffee.png"
+    else:
+        icon_path = "coffee.ico"
     sg.theme('DarkBrown1')
     layout = [
         [sg.Text('                                                                                 ')],
@@ -32,7 +37,7 @@ def gui():
         [sg.Button('Quit')],
         [sg.Button('About', button_color=(sg.YELLOWS[1], sg.GREENS[0]))]
         ]
-    window = sg.Window('Caffeination', layout, element_justification='center', icon=os.path.join(os.path.abspath(__file__), 'coffee.ico'))
+    window = sg.Window('Caffeination', layout, element_justification='center', icon=icon_path)
     while True:
         event, values = window.read()
         if event == '-start-':
@@ -40,7 +45,7 @@ def gui():
             window.FindElement('-start-').Update("Running", disabled=True)
             window.FindElement('Stop').Update(disabled=False)
             caffeination_thread = _thread.start_new_thread(run_caffeination, ())
-            sg.SystemTray.notify('Caffeination','Caffeination started successfully\nStop it by clicking on Stop or Quit buttons')
+            sg.SystemTray.notify('Caffeination','Caffeination started successfully\nStop it by clicking on Stop or Quit buttons', icon="coffee.png")
         if event == 'Stop':
             stop = True
             time.sleep(1.2)
@@ -52,7 +57,7 @@ def gui():
 Antonio Raffaele Iannaccone\n
 https://github.com/neisor\n\n
 Creator of the icon is:\n
-https://constantino.co.nz/''', title='About')
+https://constantino.co.nz/''', title='About', icon=icon_path)
         if event == sg.WIN_CLOSED or event == 'Quit':
             break
     window.Close()
